@@ -67,7 +67,7 @@ def sprint_report():
         
         #Remove other issue type not in issue_type
         final_data = dataframe.loc[(dataframe['transition.date'].isin(filter_data))]
-        final_data.loc[,"Updated Date"] = updated_dates
+        final_data.loc[:,"Updated Date"] = updated_dates
 
         final_data =  final_data.loc[(dataframe['Issue Type'].isin(issue_type))]
         
