@@ -109,7 +109,7 @@ def sprint_report():
         final_data = final_data[(final_data['Status'] == "Not Completed") |(final_data['Status'] == "Completed")]
         final_data = final_data.drop(["Updated Date"], axis = 1)
         
-        return final_data.to_csv(index=False)
+        final_data.to_csv(squad + " Sprint "+ sprint_number +".csv", index=False)
         st.markdown(' ')
         st.markdown(" ")
         st.markdown(" ")
@@ -117,12 +117,4 @@ def sprint_report():
 
 
 
-report = sprint_report()
-
-st.download_button(
-    label = "Press to Run",
-    data = report,
-    mime='text/csv'
-)
-
-st.write("DONE EXPORTING SPRINT REPORT")
+sprint_report()
