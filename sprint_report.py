@@ -115,11 +115,11 @@ if uploaded_file is not None:
     st.markdown(' ')
     st.markdown(" ")
     st.markdown(" ")
-    st.download_button("Download Sprint Report:", 
+    st.download_button("Download Sprint Report", 
                         final_data.to_csv(index=False),
                         file_name = squad + " Sprint "+ sprint_number +".csv",
                         mime='text/csv')
-    st.write("DONE EXPORTING SPRINT REPORT")
+    
 
 #st.download_button("Download Sprint Report:", final_data.to_csv(squad + " Sprint "+ sprint_number +".csv", index=False), mime='text/csv')
 
