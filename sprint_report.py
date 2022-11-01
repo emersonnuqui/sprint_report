@@ -94,10 +94,11 @@ if uploaded_file is not None:
     (final_data["Closed/Not"]=="Closed")  & (final_data["Updated Date"] <= datetime.datetime.combine(start_date, start_time)) & (final_data["Resolved"].isna()),
     (final_data["Closed/Not"]=="Closed") & (final_data["Updated Date"] >= datetime.datetime.combine(end_date, end_time)),
     (final_data["Closed/Not"]=="Closed") & (final_data["Updated Date"]>=datetime.datetime.combine(start_date, start_time)) | (final_data["Resolved"] >= datetime.datetime.combine(start_date, start_time)),
-    (final_data["Closed/Not"]=="Done")  & (final_data["Updated Date"] <= datetime.datetime.combine(end_date, end_time))
+    (final_data["Closed/Not"]=="Done")  & (final_data["Updated Date"] <= datetime.datetime.combine(end_date, end_time)),
+    (final_data["Closed/Not"]!="Done") | (final_data["Closed/Not"]!="Closed") 
     ]
 
-    choices = ["Not Completed", "Completed outside of sprint","Completed outside of sprint", "Not Completed", "Completed", "Completed"]
+    choices = ["Not Completed", "Completed outside of sprint","Completed outside of sprint", "Not Completed", "Completed", "Completed", "Not Completed"]
     
     #Create Sprint# column
     final_data["Sprint #"] = sprint_number
