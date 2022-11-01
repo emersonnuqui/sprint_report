@@ -93,7 +93,7 @@ if uploaded_file is not None:
     (final_data["Closed/Not"]=="Closed")  & (final_data["Updated Date"] <= datetime.datetime.combine(start_date, start_time)) & (final_data["Resolved"] <= datetime.datetime.combine(start_date, start_time)),
     (final_data["Closed/Not"]=="Closed")  & (final_data["Updated Date"] <= datetime.datetime.combine(start_date, start_time)) & (final_data["Resolved"].isna()),
     (final_data["Closed/Not"]=="Closed") & (final_data["Updated Date"] >= datetime.datetime.combine(end_date, end_time)),
-    (final_data["Closed/Not"]=="Closed") & (final_data["Updated Date"]>=datetime.datetime.combine(start_date, start_time)) | (final_data["Resolved"] >= datetime.datetime.combine(start_date, start_time)),
+    (final_data["Closed/Not"]=="Closed") & ((final_data["Updated Date"]>=datetime.datetime.combine(start_date, start_time)) | (final_data["Resolved"] >= datetime.datetime.combine(start_date, start_time))),
     (final_data["Closed/Not"]=="Done")  & (final_data["Updated Date"] <= datetime.datetime.combine(end_date, end_time)),
     (final_data["Closed/Not"]!="Done") | (final_data["Closed/Not"]!="Closed") 
     ]
