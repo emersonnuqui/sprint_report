@@ -28,7 +28,12 @@ st.markdown(" ")
 st.markdown(" ")
 st.markdown(" ")
 st.markdown(" ")
-squad = st.text_input("Squad Name: ")
+squad = st.selectbox(
+    'Squad Name',
+    ('Architecture', 'Authentication', 'Calendar', 
+    'Entry and Exit', 'Hermes', 'Invoice', 'Learning Materials', 'Lesson Management',
+    'Notification', 'Order Management', 'Study Plan', 
+    'Timesheet and Expense', 'User Management', 'Virtual Classroom'))
 sprint_number = st.text_input("Sprint Number: ")
 start_date = st.date_input("Start Sprint Date: ") 
 start_time = st.time_input("Start Sprint time (GMT+8): ")
@@ -98,6 +103,7 @@ if uploaded_file is not None:
     (final_data["Closed/Not"]!="Done") | (final_data["Closed/Not"]!="Closed") 
     ]
 
+
     choices = ["Not Completed", "Completed outside of sprint","Completed outside of sprint", "Not Completed", "Completed", "Completed", "Not Completed"]
     
     #Create Sprint# column
@@ -107,13 +113,15 @@ if uploaded_file is not None:
     final_data["Duration(hours)"] = (final_data["Resolved"] - final_data["Acknowledged"]).astype("timedelta64[h]")
     
     final_data['Status'] = np.select(conditions, choices, default="Not Completed")
+    final_data['Assignee'] = final_data['Assignee'].fillna('Unassigned')
+    final_data['Story Points'] = final_data['Story Points'].fillna(0)  
     
     final_data = final_data[(final_data['Status'] == "Not Completed") |(final_data['Status'] == "Completed")]
     final_data = final_data.drop(["Updated Date"], axis = 1)
     
     #final_data.to_csv(squad + " Sprint "+ sprint_number +".csv", index=False)
     st.dataframe(final_data)
-    st.markdown(' ')
+    st.markdown(" ")
     st.markdown(" ")
     st.markdown(" ")
     st.download_button("Download Sprint Report", 
